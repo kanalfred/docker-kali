@@ -32,5 +32,5 @@ RUN apt-get update \
 ### Custom ###
 #COPY etc /etc/
 
-#EXPOSE 80 443 9000
+EXPOSE 80 8080 9000
 #CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
