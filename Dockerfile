@@ -1,7 +1,9 @@
 ####################
+# Give docker user permission for local x11
+# xhost +local:docker
 #
 # Alias:
-#     alias kali='docker run -it --rm --privileged --net="host" --name kali --hostname kali -v `pwd`:/app kanalfred/kali /bin/bash'
+#     alias kali='docker run -it --rm --privileged --net="host" --name kali --hostname kali -v `pwd`:/app -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix kanalfred/kali /bin/bash'
 # Run:
 #     docker run --name php-nginx -p 8080:80 -v /home/alfred/workspace/docker/docker-php-nginx/code:/code -d kanalfred/php-nginx
 # Build:
