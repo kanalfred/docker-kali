@@ -19,8 +19,12 @@
 
 FROM kalilinux/kali-linux-docker
 
+# Add Files
+#ADD container-files/plugins /tmp/plugins
+
 RUN apt-get update \
     && apt-get install -y wireless-tools \
+            python-pip \
             net-tools \
             metasploit-framework \
             aircrack-ng \
@@ -29,9 +33,23 @@ RUN apt-get update \
             dsniff \
             driftnet \
             bettercap \
-            sslstrip \
+            mitmf \
+            #sslstrip \
+            python-dev python-setuptools libpcap0.8-dev libnetfilter-queue-dev libssl-dev libjpeg-dev libxml2-dev libxslt1-dev libcapstone3 libcapstone-dev libffi-dev file \
             ettercap-graphical \
             vim 
+
+# custom plugins
+# SSlstrip2 - https://github.com/singe/sslstrip2/tree/892b014bd1b62e01f5ea0924839d08a931a6a2b1
+# Dns2Proxy - https://github.com/singe/dns2proxy/tree/38428f60770fd8639e61a6bc91d6d7318086755f
+#RUN cd /tmp/plugins/sslstrip2 && python setup.py install
+
+# MINM framework
+# https://github.com/byt3bl33d3r/MITMf
+#RUN cd /tmp/plugins \
+#    && git clone https://github.com/byt3bl33d3r/MITMf \
+#    && cd MITMf && git submodule init && git submodule update --recursive \
+#    && pip install -r requirements.txt
 
 ### Custom ###
 #COPY etc /etc/
