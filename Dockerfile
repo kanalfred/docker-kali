@@ -13,6 +13,7 @@
 #     https://hackingvision.com/2017/02/18/kali-linux-man-in-the-middle-attack/
 # Command:
 #     find package: apt-cache search arpspoof
+#     launch ettercap graphic: ettercap -G
 #
 ####################
 
@@ -29,6 +30,7 @@ RUN apt-get update \
             driftnet \
             bettercap \
             sslstrip \
+            ettercap-graphical \
             vim 
 
 ### Custom ###
