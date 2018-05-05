@@ -20,7 +20,8 @@
 FROM kalilinux/kali-linux-docker
 
 # Add Files
-#ADD container-files/plugins /tmp/plugins
+ADD container-files/mitmf /usr/bin/mitmf
+ADD hack.txt /note/hack.txt
 
 RUN apt-get update \
     && apt-get install -y wireless-tools \
@@ -46,7 +47,8 @@ RUN apt-get update \
 
 # MINM framework
 # https://github.com/byt3bl33d3r/MITMf
-RUN mv /bin/sh /bin/sh_tmp && ln -s /bin/bash /bin/sh
+# sh doesn't have source command only bash has
+#RUN mv /bin/sh /bin/sh_tmp && ln -s /bin/bash /bin/sh
 RUN cd / \
     && pip install virtualenvwrapper \
     #&& source /usr/local/bin/virtualenvwrapper.sh \
@@ -56,7 +58,7 @@ RUN cd / \
     && git clone https://github.com/byt3bl33d3r/MITMf \
     && cd MITMf && git submodule init && git submodule update --recursive \
     && pip install -r requirements.txt
-RUN rm /bin/sh && mv /bin/sh_tmp /bin/sh
+#RUN rm /bin/sh && mv /bin/sh_tmp /bin/sh
 
 ### Custom ###
 #COPY etc /etc/
