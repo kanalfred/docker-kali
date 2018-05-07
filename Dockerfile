@@ -38,6 +38,7 @@ RUN apt-get update \
             #sslstrip \
             python-dev python-setuptools libpcap0.8-dev libnetfilter-queue-dev libssl-dev libjpeg-dev libxml2-dev libxslt1-dev libcapstone3 libcapstone-dev libffi-dev file \
             ettercap-graphical \
+            postgresql \
             vim 
 
 # custom plugins

