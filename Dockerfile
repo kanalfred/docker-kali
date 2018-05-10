@@ -61,8 +61,14 @@ RUN cd / \
     && pip install -r requirements.txt
 #RUN rm /bin/sh && mv /bin/sh_tmp /bin/sh
 
+# Beef framework
+RUN cd / \
+    && git clone https://github.com/beefproject/beef \
+    && cd beef \
+    && yes | ./install
+
 ### Custom ###
 #COPY etc /etc/
 
-EXPOSE 80 8080 9000
+EXPOSE 80 8080 9000 4444
 #CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
