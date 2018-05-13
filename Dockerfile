@@ -19,6 +19,8 @@
 
 FROM kalilinux/kali-linux-docker
 
+ENV TERM=xterm
+
 # Add Files
 ADD container-files/mitmf /usr/bin/mitmf
 ADD hack.txt /note/hack.txt
