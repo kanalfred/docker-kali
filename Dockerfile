@@ -20,6 +20,10 @@
 FROM kalilinux/kali-linux-docker
 
 ENV TERM=xterm
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
+# https://github.com/beefproject/beef/issues/1290
+ENV LC_ALL=C.UTF-8 
 
 # Add Files
 ADD container-files/mitmf /usr/bin/mitmf
