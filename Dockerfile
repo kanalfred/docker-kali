@@ -67,6 +67,7 @@ RUN cd / \
 RUN cd / \
     && git clone https://github.com/beefproject/beef \
     && cd beef \
+    && sed -i "/gem 'rake'/a gem 'xmlrpc'" Gemfile \
     && yes | ./install
 
 ### Custom ###
