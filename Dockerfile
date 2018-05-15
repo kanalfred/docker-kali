@@ -74,6 +74,12 @@ RUN cd / \
     && sed -i "/gem 'rake'/a gem 'xmlrpc'" Gemfile \
     && yes | ./install
 
+# Set setoolkit
+RUN cd / \
+    && git clone https://github.com/trustedsec/social-engineer-toolkit/ set/ \
+    && cd set \
+    && yes | python setup.py install
+
 ### Custom ###
 #COPY etc /etc/
 
