@@ -1,3 +1,7 @@
+#############################
+# Scan network
+#############################
+netdiscover
 
 #############################
 #  hack sslstrip
@@ -5,6 +9,7 @@
 
 https://www.youtube.com/watch?v=OoiYJUHF8bo
 https://www.youtube.com/watch?v=NjNRzJV8Rvo
+
 
 1) echo 1 > /proc/sys/net/ipv4/ip_forward
 2) iptables -P FORWARD ACCEPT
